@@ -100,7 +100,7 @@
 <channel>
 
 <item>
-<title>WeebTV</title>
+<title>WeebTV (1 - login)</title>
 <link><?php echo $webpath; ?>scripts/xLiveCZ/category/tv/WeebTV.php?disk=<?php echo $webpath; ?>scripts/</link>
 <media>logo-weebtv</media>
 </item>
@@ -172,9 +172,9 @@
 </item>
 
 <item>
-<title>OnetVOD</title>
-<link><?php echo $webpath; ?>onet.php</link>
-<media>logo-onetvod</media>
+<title>WP.TV</title>
+<link><?php echo $webpath; ?>wp.php</link>
+<media>logo-wp</media>
 </item>
 
 <item>
@@ -184,9 +184,15 @@
 </item>
 
 <item>
-<title>Polskie TV</title>
-<link>http://zam.opf.slu.cz/baco/skripty/tv.php?link=https://dl.dropboxusercontent.com/u/44973024/tv/polske_tv.xml,,<?php echo $webpath; ?>scripts,Polskie</link>
-<media>polskie</media>
+<title>YouTube</title>
+<link><?php echo $webpath; ?>scripts/xLiveCZ/category/yt.php</link>
+<media>logo-yt</media>
+</item>
+
+<item>
+<title>OnetVOD</title>
+<link><?php echo $webpath; ?>onet.php</link>
+<media>logo-onetvod</media>
 </item>
 
 <item>
@@ -196,21 +202,27 @@
 </item>
 
 <item>
-<title>YouTube</title>
-<link><?php echo $webpath; ?>scripts/xLiveCZ/category/yt.php</link>
-<media>logo-yt</media>
+<title>FilmBox</title>
+<link><?php echo $webpath; ?>filmbox.php</link>
+<media>logo-filmbox</media>
 </item>
 
 <item>
-<title>Andrzej Mleczko</title>
-<link><?php echo $webpath; ?>mleczko.php</link>
-<media>logo-mleczko</media>
+<title>Polskie TV</title>
+<link>http://zam.opf.slu.cz/baco/skripty/tv.php?link=https://dl.dropboxusercontent.com/u/44973024/tv/polske_tv.xml,,<?php echo $webpath; ?>scripts,Polskie</link>
+<media>polskie</media>
 </item>
 
 <item>
 <title>Game Trailers</title>
 <link><?php echo $webpath; ?>gt.php</link>
 <media>logo-gt</media>
+</item>
+
+<item>
+<title>Andrzej Mleczko</title>
+<link><?php echo $webpath; ?>mleczko.php</link>
+<media>logo-mleczko</media>
 </item>
 
 <item>
