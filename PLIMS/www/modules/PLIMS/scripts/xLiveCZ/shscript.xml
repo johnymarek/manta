@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+	<product model="SH script">
+		<version>4.9</version>
+		<checksum>db327fa0c3d0b7ebc1c6588a7bd60864</checksum>
+		<downloadurl>http://xtr-updats.wencas.cz/download.php?f=shscript_4.9</downloadurl>
+		<localpath>scripts/shscript.zip</localpath>
+		<needsize>1</needsize>
+		<popupinfo>SH script 4.6
+
+Seznam změn:
+
+    * uprava parametru pro dolce tv</popupinfo>
+	</product>
