@@ -1,5 +1,5 @@
 [PLIMS]
-	revision = 12
+	revision = 13
 	title = "PLIMS"
 	navy_title = "PLIMS"
 	navy_frame = "%mos%modules/PLIMS/ustawienia.php"
