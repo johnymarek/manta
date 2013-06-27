@@ -2,6 +2,14 @@
 
 mos=`cat /tmp/plims_mos`
 
+fix_rights()
+{
+  chmod 755 $mos/PLIMS/bin/rtmpdump
+  chmod 755 $mos/PLIMS/scripts/xLiveCZ/msdl
+  chmod 755 $mos/PLIMS/scripts/xLiveCZ/msdl.sh
+  chmod 755 $mos/PLIMS/scripts/xLiveCZ/nova.sh
+}
+
 create_backup()
 {
   echo "Backup ustawień przed instalacją"
@@ -38,6 +46,7 @@ then
 	check;
 	echo "Aktualizacja pakietu mos..."
 	pm update PLIMS now
+  fix_rights;
   restore;
 else
 	create_backup;
@@ -51,6 +60,7 @@ else
 	cp -R $mos/PLIMS_TEMP/www/modules/PLIMS/* $mos/PLIMS/
 	echo "Usuwanie tymczasowego katalogu.."
 	rm -R $mos/PLIMS_TEMP
+  fix_rights;
   restore;
 fi
 
