@@ -123,9 +123,9 @@ function generateSeriesHeader($cat, $szuk)	{
 		}
 		
 		if ($xf === FALSE) die('Wrong XML');
-		$url = '';
 		
 		foreach ($pat as $clip) {
+			$url = '';
 			foreach ($clip->srcreq as $stream)	{
 				if (($stream['quality'] == IPLA_QUALITY) && ($stream['format'] == 3))	{
 					$url = $stream['url'];
