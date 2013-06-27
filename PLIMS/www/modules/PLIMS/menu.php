@@ -1,5 +1,5 @@
 <?php
-	$version = "3.0";
+	require('wersja.inc');
 	$dirpath = dirname($_SERVER["SCRIPT_FILENAME"]) . '/';
 	$webpath = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/';
 	$imgpath = $dirpath . 'image/';
@@ -26,7 +26,7 @@
 
 <text redraw="no" backgroundColor="0:0:0" foregroundColor="255:255:255" offsetXPC="33" offsetYPC="86" widthPC="62" heightPC="4" fontSize="11" align="right">
 <script>
-	"PLIMS <?php echo $version; ?> by mikka, Pavlik, Xury &amp; dobosz23";
+	"PLIMS <?php echo WERSJA; ?> by mikka, Pavlik, Xury &amp; dobosz23";
 </script>
 </text>
 
@@ -100,7 +100,7 @@
 <channel>
 
 <item>
-<title>WeebTV (1 - login)</title>
+<title>WeebTV</title>
 <link><?php echo $webpath; ?>scripts/xLiveCZ/category/tv/WeebTV.php?disk=<?php echo $webpath; ?>scripts/</link>
 <media>logo-weebtv</media>
 </item>

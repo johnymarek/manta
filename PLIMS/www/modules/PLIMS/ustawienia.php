@@ -9,12 +9,28 @@ if (!empty($_POST))	{
 	$xmlcontent = '<Ustawienia>
 	<quality>' . $_POST["quality"] . '</quality>
 	<nritems>' . $_POST["nritems"] . '</nritems>
+	<weeb_login>' . $_POST["weeb_login"] . '</weeb_login>
+	<weeb_pass>' . $_POST["weeb_pass"] . '</weeb_pass>
 </Ustawienia>
 ';
 	$plims_file = fopen(dirpath . 'ustawienia.xml', 'w');
 	fwrite($plims_file, $xmlcontent);
 	fclose($plims_file);
 }
+
+$set = simplexml_load_file(dirpath . 'ustawienia.xml');
+switch ($set->quality) {
+    case 0:
+        $qual = "Najgorsza";
+        break;
+    case 1:
+        $qual = "Średnia";
+        break;
+    case 2:
+        $qual = "Najlepsza";
+        break;
+}
+
 
 echo '<html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -42,21 +58,29 @@ if (!empty($_POST))
 echo '</tbody></table>
 
 <table align="center" width="80%" border="0" cellpadding="0" cellspacing="0"><tbody>
-<tr><th align="left" width="60%"><b>Opcja</b></th>
-	<th align="left" width="40%"><b>Wartość</b></th></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th align="left" width="50%"><b>Opcja</b></th>
+	<th align="left" width="25%"><b>Aktualne</b></th>
+	<th align="left" width="25%"><b>Nowe</b></th></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
 <form action="ustawienia.php" method="post">
-<tr><td>Jakość strumieni (<span class="hotspot" onmouseover="tooltip.show(\'Ustawienia jakości dla HDtrailers, Ipla oraz Onet\');" onmouseout="tooltip.hide();">?</span>):</td><td><select name="quality">
+<tr><td>Jakość strumieni (<span class="hotspot" onmouseover="tooltip.show(\'Ustawienia jakości dla HDtrailers, Ipla oraz Onet\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $qual . '</td><td><select name="quality">
 <option value="0">Najgorsza</option>
 <option value="1">Średnia</option>
 <option value="2">Najlepsza</option>
 </select></td></tr>
 
-<tr><td>Liczba wyników strumieni (<span class="hotspot" onmouseover="tooltip.show(\'Liczba wyświetlanych wyników na jednej stronie w Onet oraz wyszukiwarce Ipla\');" onmouseout="tooltip.hide();">?</span>):</td><td><select name="nritems">
+<tr><td>Liczba wyników strumieni (<span class="hotspot" onmouseover="tooltip.show(\'Liczba wyświetlanych wyników na jednej stronie w Onet oraz wyszukiwarce Ipla\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $set->nritems . '</td><td><select name="nritems">
 <option value="15">15</option>
 <option value="30">30</option>
 <option value="50">50</option>
 </select></td></tr>
+
+<tr><td>Weeb.tv login (<span class="hotspot" onmouseover="tooltip.show(\'Nazwa użytkownika w weeb.tv\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $set->weeb_login . '</td><td><input type="text" name="weeb_login">
+</td></tr>
+
+<tr><td>Weeb.tv hasło (<span class="hotspot" onmouseover="tooltip.show(\'Hasło użytkownika w weeb.tv\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $set->weeb_pass . '</td><td><input type="text" name="weeb_pass">
+</td></tr>
+
 
 <tr><td><br><input type="submit" value="Zapisz"/><br><br></td></tr>
 </form></tbody></table></div>
