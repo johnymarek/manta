@@ -8,6 +8,9 @@ fix_rights()
   chmod 755 $mos/PLIMS/scripts/xLiveCZ/msdl
   chmod 755 $mos/PLIMS/scripts/xLiveCZ/msdl.sh
   chmod 755 $mos/PLIMS/scripts/xLiveCZ/nova.sh
+  rm -R $mos/PLIMS/scripts/xLiveCZ/rtmpdump
+  cd /usr/local/etc/mos/www/modules/PLIMS/scripts/xLiveCZ/
+  ln -s ./../../bin/rtmpdump rtmpdump
 }
 
 create_backup()
@@ -46,8 +49,8 @@ then
 	check;
 	echo "Aktualizacja pakietu mos..."
 	pm update PLIMS now
-  fix_rights;
-  restore;
+   fix_rights;
+   restore;
 else
 	create_backup;
 	download;
@@ -60,8 +63,8 @@ else
 	cp -R $mos/PLIMS_TEMP/www/modules/PLIMS/* $mos/PLIMS/
 	echo "Usuwanie tymczasowego katalogu.."
 	rm -R $mos/PLIMS_TEMP
-  fix_rights;
-  restore;
+   fix_rights;
+   restore;
 fi
 
 echo -e "\nInstalacja przebiegła pomyślnie.\nZrestartuj PLIMS (wyjdź i wejdź) aby zobaczyć zmiany."
