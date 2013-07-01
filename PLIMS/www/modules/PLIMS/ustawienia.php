@@ -11,6 +11,7 @@ if (!empty($_POST))	{
 	<nritems>' . $_POST["nritems"] . '</nritems>
 	<weeb_login>' . $_POST["weeb_login"] . '</weeb_login>
 	<weeb_pass>' . $_POST["weeb_pass"] . '</weeb_pass>
+	<weeb_hd>' . $_POST["weeb_hd"] . '</weeb_hd>
 </Ustawienia>
 ';
 	$plims_file = fopen(dirpath . 'ustawienia.xml', 'w');
@@ -28,6 +29,14 @@ switch ($set->quality) {
         break;
     case 2:
         $qual = "Najlepsza";
+        break;
+}
+switch ($set->weeb_hd) {
+    case 0:
+        $weebqual = "Nie";
+        break;
+    case 1:
+        $weebqual = "Tak";
         break;
 }
 
@@ -81,6 +90,10 @@ echo '</tbody></table>
 <tr><td>Weeb.tv hasło (<span class="hotspot" onmouseover="tooltip.show(\'Hasło użytkownika w weeb.tv\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $set->weeb_pass . '</td><td><input type="text" name="weeb_pass">
 </td></tr>
 
+<tr><td>Weeb.tv HD (<span class="hotspot" onmouseover="tooltip.show(\'Korzystaj z jakości HD w weeb.tv (o ile jest dostępna)\');" onmouseout="tooltip.hide();">?</span>):</td><td>' . $weebqual . '</td><td><select name="weeb_hd">
+<option value="0">Nie</option>
+<option value="1">Tak</option>
+</select></td></tr>
 
 <tr><td><br><input type="submit" value="Zapisz"/><br><br></td></tr>
 </form></tbody></table></div>
