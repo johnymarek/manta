@@ -8,7 +8,7 @@ function generateIndexHeader()	{
 echo <<<HEA
 <?xml version='1.0' ?><rss version="2.0" encoding="UTF-8" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-<mediaDisplay name="photoView" rowCount="1" columnCount="4" showHeader="no" drawItemText="no" showDefaultInfo="no" itemOffsetXPC="5" itemOffsetYPC="46" itemHeightPC="12" itemWidthPC="17" backgroundColor="0:0:0" idleImageXPC="82" idleImageYPC="80" idleImageWidthPC="4.65" idleImageHeightPC="8.25" sideColorBottom="0:0:0" sideColorTop="0:0:0" sideColorLeft="0:0:0" sideColorRight="0:0:0" mainPartColor="0:0:0">
+<mediaDisplay name="onePartView" itemImageXPC="42" itemImageYPC="15" itemImageHeightPC="7" itemImageWidthPC="7" itemXPC="50" itemYPC="14" itemHeightPC="9" itemWidthPC="42" itemPerPage="8" backgroundColor="0:0:0" showHeader="no" idleImageXPC="82" idleImageYPC="80" idleImageWidthPC="4.65" idleImageHeightPC="8.25" sideColorBottom="0:0:0" sideColorTop="0:0:0" sideColorLeft="0:0:0" sideColorRight="0:0:0" mainPartColor="0:0:0" showDefaultInfo="no">
 HEA;
 
 echo '
@@ -21,30 +21,11 @@ echo '
 <idleImage>' . imgpath . 'loader_7.png</idleImage>
 <idleImage>' . imgpath . 'loader_8.png</idleImage>
 
-<text redraw="yes" offsetXPC="50" offsetYPC="85" widthPC="10" heightPC="5" fontSize="14" backgroundColor="0:0:0">
+<text redraw="yes" offsetXPC="50" offsetYPC="85" widthPC="40" heightPC="5" fontSize="14" backgroundColor="0:0:0">
 <script>
-Add(1, getFocusItemIndex()) + "/4";
+Add(1, getFocusItemIndex()) + "/3";
 </script>
 </text>
-
-<itemDisplay> 
-<image offsetXPC="0" offsetYPC="0" widthPC="100" heightPC="100">
-<script>
-	if (getDrawingItemState() == "focus")
-	{
-		print("' . imgpath . '" + getItemInfo(-1, "media") + ".jpg");
-	}
-	else
-	{
-		print("' . imgpath . '" + getItemInfo(-1, "media") + "_off.jpg");
-	}
-</script>
-</image>
-</itemDisplay>
-
-<backgroundDisplay>
-<image offsetXPC="0" offsetYPC="0" widthPC="100" heightPC="100">' . imgpath . 'humor.jpg</image>
-</backgroundDisplay>
 </mediaDisplay>		
 				
 <channel>
@@ -52,70 +33,23 @@ Add(1, getFocusItemIndex()) + "/4";
 		<item>
             <title>Bash</title>
             <link>' . webpath . 'humor.php?category=bash</link>
-            <media>logo-bash</media>
+            <media:thumbnail url="http://m.ocdn.eu/_m/98afff2d875a62c87447c4af9a915da6,0,1.jpg" width="120" height="90" />
 		</item>
 		
 		<item>
             <title>JoeMonster</title>
             <link>' . webpath . 'humor.php?category=joe</link>
-            <media>logo-joe</media>
+            <media:thumbnail url="http://sps3.s3.amazonaws.com/uploads/user/photo/8131/small_logo2.jpg" width="120" height="90" />
 		</item>
 		
 		<item>
             <title>Kretyn</title>
             <link>' . webpath . 'humor.php?category=kretyn</link>
-            <media>logo-kretyn</media>
-		</item>
-		
-		<item>
-            <title>Mleczko</title>
-            <link>' . webpath . 'humor.php?mleczko=yes</link>
-            <media>logo-mleczko</media>
+            <media:thumbnail url="http://www.kretyn.com/img/logo.png" width="120" height="90" />
 		</item>
 
 ';
 }
-
-function generateMleczko()	{
-	$videos = '';
-	$xml = simplexml_load_file("http://tvwidget.pl/xml/mleczko.xml");
-	$go = $xml->channel->item;
-
-	foreach ($go as $obrazek) 
-	{
-		$videos .= '
-<item>
-<title>' . $obrazek->title .'</title>
-<media>' . $obrazek->enclosure['url'] . '</media>
-</item>
-';
-	}
-	echo '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://purl.org/dc/elements/1.1/">
-
-<mediaDisplay name="photoView" showHeader="no" rowCount="2" columnCount="6" columnPerPage="6" drawItemText="no" showDefaultInfo="no" itemOffsetXPC="4" itemOffsetYPC="79" sliding="yes" itemBorderColor="246:174:74" itemHeightPC="8" itemWidthPC="14" itemBackgroundColor="0:0:0" idleImageXPC="90" idleImageYPC="5" idleImageWidthPC="5" idleImageHeightPC="8" backgroundColor="0:0:0" bottomYPC="100" sideTopHeightPC="0" mainPartColor="-1:-1:-1" sideColorBottom="-1:-1:-1" sideColorTop="-1:-1:-1" forceFocusOnItem="yes" itemCornerRounding="yes">
-
-<image redraw="yes" offsetXPC="14" offsetYPC="5" widthPC="74" heightPC="74">
-<script>
-	getItemInfo(-1, "media");
-</script>
-</image>
-
-<itemDisplay>
-<text redraw="no" offsetXPC="2" offsetYPC="5" widthPC="96" heightPC="90" fontSize="14">
-<script>
-	getItemInfo(-1, "title");
-</script>
-
-</text>
-</itemDisplay>
-
-</mediaDisplay>
-
-<channel>
-
-' . $videos;
-}
-
 
 function generateSeriesHeader($cat)	{
 
@@ -209,10 +143,6 @@ FOO;
 if (isset($_GET['category'])) {
 	generateSeriesHeader($_GET['category']);
 	generateFooter();
-}
-elseif(isset($_GET['mleczko']))	{
-	generateMleczko();
-	generateFooter();	
 }
 else	{
 	generateIndexHeader();

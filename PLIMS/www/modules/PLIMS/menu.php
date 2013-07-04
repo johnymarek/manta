@@ -32,7 +32,7 @@
 
 <text redraw="no" backgroundColor="0:0:0" foregroundColor="255:255:255" offsetXPC="33" offsetYPC="90" widthPC="62" heightPC="4" fontSize="11" align="right">
 <script>
-	"Przyciski: 0 - o programie &#32; | &#32; 1 - logowanie do weeb.tv &#32; | &#32; 5 - aktualizacja";
+	"Przyciski: 0 - o programie &#32; | &#32; 5 - aktualizacja";
 </script>
 </text>
 
@@ -58,14 +58,6 @@
 	{
 		showIdle();
 		url="<?php echo $webpath; ?>credits.php";
-		jumpToLink("GotoPage");
-		"true";
-		redrawDisplay();
-	}
-	if (userInput == "one" || userInput == "1" || userInput == "option_red")
-	{
-		showIdle();
-		url="<?php echo $webpath; ?>scripts/xLiveCZ/category/tv/showlogin.php";
 		jumpToLink("GotoPage");
 		"true";
 		redrawDisplay();
@@ -100,8 +92,8 @@
 <channel>
 
 <item>
-<title>WeebTV</title>
-<link><?php echo $webpath; ?>scripts/xLiveCZ/category/tv/WeebTV.php?disk=<?php echo $webpath; ?>scripts/</link>
+<title>Weeb.TV</title>
+<link><?php echo $webpath; ?>weeb.php</link>
 <media>logo-weebtv</media>
 </item>
 
@@ -160,9 +152,9 @@
 </item>
 
 <item>
-<title>Filmweb Trailers</title>
-<link><?php echo $webpath; ?>fwtrailers.php</link>
-<media>logo-fwtrailers</media>
+<title>Filmy online</title>
+<link><?php echo $webpath; ?>filmy_online.php</link>
+<media>logo-filmy_online</media>
 </item>
 
 <item>
@@ -178,9 +170,9 @@
 </item>
 
 <item>
-<title>Filmy online</title>
-<link><?php echo $webpath; ?>filmy_online.php</link>
-<media>logo-filmy_online</media>
+<title>HD Trailers</title>
+<link><?php echo $webpath; ?>hdtrailers.php</link>
+<media>logo-hdtrailers</media>
 </item>
 
 <item>
@@ -196,9 +188,15 @@
 </item>
 
 <item>
-<title>HD Trailers</title>
-<link><?php echo $webpath; ?>hdtrailers.php</link>
-<media>logo-hdtrailers</media>
+<title>Filmweb Trailers</title>
+<link><?php echo $webpath; ?>fwtrailers.php</link>
+<media>logo-fwtrailers</media>
+</item>
+
+<item>
+<title>Game Trailers</title>
+<link><?php echo $webpath; ?>gt.php</link>
+<media>logo-gt</media>
 </item>
 
 <item>
@@ -214,15 +212,15 @@
 </item>
 
 <item>
-<title>Game Trailers</title>
-<link><?php echo $webpath; ?>gt.php</link>
-<media>logo-gt</media>
-</item>
-
-<item>
 <title>Andrzej Mleczko</title>
 <link><?php echo $webpath; ?>mleczko.php</link>
 <media>logo-mleczko</media>
+</item>
+
+<item>
+<title>Humor</title>
+<link><?php echo $webpath; ?>humor.php</link>
+<media>logo-humor</media>
 </item>
 
 <item>

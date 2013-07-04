@@ -6,7 +6,7 @@ define("webpath", 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_P
 define("imgpath", dirpath . 'image/');
 
 $konfig = simplexml_load_file(dirpath . 'ustawienia.xml');
-if (!empty($konfig->quality))	{
+if (isset($konfig->quality))	{
 	define("IPLA_QUALITY", $konfig->quality);
 }
 else	{
