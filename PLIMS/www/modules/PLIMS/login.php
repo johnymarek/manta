@@ -60,6 +60,33 @@ switch ($action) {
 	fwrite(fopen($file, 'w'), $line);
 	require_once('showlogin.php');
 	die();
+
+	case 'quality':
+	$fp = fopen($file, "r+");
+	$ci=1;
+	$line="";
+	while ($ci>0) {
+		$data = fgets($fp,128);
+		If (!$data) {
+			Break;
+		}
+		$line.=$data;
+		$ci++;
+	}
+	$S     = 0;
+	$E     = 0;
+	$find  = "<weeb_hd>";
+	$S     = strpos($line, $find, $S) + strlen($find);
+	$partA = substr($line, 0, $S);
+	$find  = "</weeb_hd>";
+	$S     = strpos($line, $find, $S);
+	$partB = substr($line, $S);
+	$line = $partA.$text.$partB;
+	if ($text == "1" or $text == "0")  {
+	fwrite(fopen($file, 'w'), $line);
+	}
+	require_once('showlogin.php');
+	die();
 	
 	}
 ?>

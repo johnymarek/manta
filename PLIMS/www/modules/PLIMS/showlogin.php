@@ -29,7 +29,8 @@ echo "<?xml version='1.0' encoding='UTF8' ?>";
    
    $weebtv      = simplexml_load_file("ustawienia.xml");
    $weebtv_username = $weebtv->weeb_login;
-   $weebtv_password = $weebtv->weeb_pass;
+   $weebtv_password = "******";
+   $weebtv_quality = $weebtv->weeb_hd;
 ?>
 <!--Realtek chip players - killerman - without any support Xtreamer-->
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -67,6 +68,12 @@ echo "<?xml version='1.0' encoding='UTF8' ?>";
 	</text>
   	<text redraw="yes" align="left" offsetXPC="58" offsetYPC="33" widthPC="40" heightPC="8" fontSize="20" backgroundColor="-1:-1:-1" foregroundColor="100:200:255">
     <?php echo $weebtv_password; ?>
+	</text>
+	<text redraw="yes" align="left" offsetXPC="58" offsetYPC="41" widthPC="40" heightPC="8" fontSize="20" backgroundColor="-1:-1:-1" foregroundColor="100:200:255">
+    <?php echo $weebtv_quality; ?>
+	</text>
+	<text redraw="yes" align="left" offsetXPC="68" offsetYPC="41" widthPC="40" heightPC="8" fontSize="14" backgroundColor="-1:-1:-1" foregroundColor="140:140:140">
+    Wpisz dla  HD - 1 a dla SD - 0
 	</text>
 <idleImage><?php echo $imgpath; ?>loader_1.png</idleImage>
 <idleImage><?php echo $imgpath; ?>loader_2.png</idleImage>
@@ -142,7 +149,11 @@ echo "<?xml version='1.0' encoding='UTF8' ?>";
       <link>rss_command://search</link>
       <search url="<?php echo $webpath; ?>login.php?query=ustawienia.xml,passwd,%s" />
     </item>
-
+	<item>
+      <title>   Jakość dla WeebTV</title>
+      <link>rss_command://search</link>
+      <search url="<?php echo $webpath; ?>login.php?query=ustawienia.xml,quality,%s" />
+    </item>
 
     <item>
       <title>Powrót</title>

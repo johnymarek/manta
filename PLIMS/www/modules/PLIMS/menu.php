@@ -225,7 +225,8 @@
 
 <item>
 <title>Beeg (18+)</title>
-<link><?php echo $webpath; ?>scripts/xLiveCZ/category/rss/beeg.php</link>
+<link>rss_command://search</link>
+<search url="<?php echo $webpath; ?>scripts/xLiveCZ/category/rss/%s.php" />
 <media>logo-beeg</media>
 </item>
 

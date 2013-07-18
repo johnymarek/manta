@@ -110,8 +110,114 @@ echo '
 ';
 }
 
+function generateIndexHeader1($cat)	{
+echo <<<HEA
+<?xml version='1.0' ?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-function generateSeriesHeader($cat)	{
+echo '
+<mediaDisplay name=photoView sideBottomHeightPC=21 sideTopHeightPC=11 columnCount=4 rowCount=3 fontSize=16 imageBorderColor="255:255:0" imageBackgroundColor="0:0:0" itemBackgroundColor="0:0:0" sliding="yes" itemGapXPC=1 itemGapYPC=2 showHeader="no" showDefaultInfo="yes" drawItemText="no" idleImageXPC="92" idleImageYPC="93" idleImageWidthPC="5" idleImageHeightPC="5">
+
+<text  offsetXPC=36 offsetYPC=2 widthPC=35 heightPC=10 fontSize=25 backgroundColor=-1:-1:-1 foregroundColor=255:255:255>Filmy on-line</text>
+	
+<itemDisplay>
+<image redraw="no" offsetXPC="1" offsetYPC="1" widthPC="98" heightPC="98">
+<script>
+	getItemInfo(-1, "media");
+</script>
+</image>
+</itemDisplay>
+HEA;
+
+echo '
+<idleImage>' . imgpath . 'loader_1.png</idleImage>
+<idleImage>' . imgpath . 'loader_2.png</idleImage>
+<idleImage>' . imgpath . 'loader_3.png</idleImage>
+<idleImage>' . imgpath . 'loader_4.png</idleImage>
+<idleImage>' . imgpath . 'loader_5.png</idleImage>
+<idleImage>' . imgpath . 'loader_6.png</idleImage>
+<idleImage>' . imgpath . 'loader_7.png</idleImage>
+<idleImage>' . imgpath . 'loader_8.png</idleImage>
+</mediaDisplay>
+	
+<channel>
+	<title>Filmy on-line alfabetycznie</title>
+	<link>' . webpath . 'filmy_online.php</link>
+
+<item>
+<title>A-B</title>
+<link>' . webpath . 'filmy_online.php?al=AB&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_ab.jpg</media>
+</item>
+
+<item>
+<title>C-D</title>
+<link>' . webpath . 'filmy_online.php?al=CD&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_cd.jpg</media>
+</item>
+
+<item>
+<title>E-F</title>
+<link>' . webpath . 'filmy_online.php?al=EF&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_ef.jpg</media>
+</item>
+
+<item>
+<title>G-H</title>
+<link>' . webpath . 'filmy_online.php?al=GH&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_gh.jpg</media>
+</item>
+
+<item>
+<title>I-J</title>
+<link>' . webpath . 'filmy_online.php?al=IJ&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_ij.jpg</media>
+</item>
+
+<item>
+<title>K-L</title>
+<link>' . webpath . 'filmy_online.php?al=KL&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_kl.jpg</media>
+</item>
+
+<item>
+<title>M-N</title>
+<link>' . webpath . 'filmy_online.php?al=MN&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_mn.jpg</media>
+</item>
+
+<item>
+<title>O-P</title>
+<link>' . webpath . 'filmy_online.php?al=OP&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_op.jpg</media>
+</item>
+
+<item>
+<title>R-S</title>
+<link>' . webpath . 'filmy_online.php?al=RS&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_rs.jpg</media>
+</item>
+
+<item>
+<title>T-U</title>
+<link>' . webpath . 'filmy_online.php?al=TU&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_tu.jpg</media>
+</item>
+
+<item>
+<title>W-V</title>
+<link>' . webpath . 'filmy_online.php?al=WV&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_wv.jpg</media>
+</item>
+
+<item>
+<title>X-Z</title>
+<link>' . webpath . 'filmy_online.php?al=XZ&amp;kat=' . $cat . '</link>
+<media>' . imgpath . 'fo_xz.jpg</media>
+</item>
+';
+}
+
+function generateSeriesHeader($al, $kat)	{
 echo <<<SER
 <?xml version='1.0' ?><rss version="2.0" encoding="UTF-8" xmlns:dc="http://purl.org/dc/elements/1.1/">
 SER;
@@ -120,26 +226,26 @@ echo '
 	<onEnter>showIdle();</onEnter>
 
 	<script>
-		Jukebox = "http://natanielek.neostrada.pl/' . $cat . '.xml";
+		Jukebox = "http://natanielek.neostrada.pl/' . $kat . '.xml";
 		Jukebox_ok = loadXMLFile(Jukebox);
 		if (Jukebox_ok == null) {
 			Jukebox_itemSize = 0;
 			print("Load Jukebox fail ", Jukebox);
 		}
 		else {
-			Jukebox_itemSize = getXMLElementCount("Jukebox", "Movie");
+			Jukebox_itemSize = getXMLElementCount("Jukebox' . $al . '", "Movie");
 			print("Jukebox Item Size = ", Jukebox_itemSize);
 		}
 		if (Jukebox_itemSize &gt; 0) {
-			Category_Title = getXMLText("Jukebox", "Category", "title");
+			Category_Title = getXMLText("Jukebox' . $al . '", "Category", "title");
 			Category_Background ="' . imgpath . 'filmy_online.jpg";
-			Category_RSS =getXMLText("Jukebox", "Category", "link");
+			Category_RSS =getXMLText("Jukebox' . $al . '", "Category", "link");
 			count=0;
 			while(1) {
-				Movie_ID = getXMLText("Jukebox", "Movie", count, "id");
-				Movie_Title = getXMLText("Jukebox", "Movie", count, "title");
-				Movie_Poster = getXMLText("Jukebox", "Movie", count, "poster");
-				Movie_File = getXMLText("Jukebox", "Movie", count, "file");
+				Movie_ID = getXMLText("Jukebox' . $al . '", "Movie", count, "id");
+				Movie_Title = getXMLText("Jukebox' . $al . '", "Movie", count, "title");
+				Movie_Poster = getXMLText("Jukebox' . $al . '", "Movie", count, "poster");
+				Movie_File = getXMLText("Jukebox' . $al . '", "Movie", count, "file");
 
 				Movie_ID_Array = pushBackStringArray(Movie_ID_Array, Movie_ID);
 				Movie_Title_Array = pushBackStringArray(Movie_Title_Array, Movie_Title);
@@ -278,11 +384,16 @@ FOO;
 }
 
 if (isset($_GET['cat'])) {
-	generateSeriesHeader($_GET['cat']);
+	generateIndexHeader1($_GET['cat']);
+	generateFooter();
+}
+elseif (isset($_GET['al'])) {
+	generateSeriesHeader($_GET['al'], $_GET['kat']);
 	generateFooter();
 }
 else	{
 	generateIndexHeader();
 	generateFooter();
 }
+
 ?>
