@@ -1,5 +1,5 @@
 <?php
-
+#error_reporting(0);
 $dirpath = dirname($_SERVER["SCRIPT_FILENAME"]) . '/';
 $imgpath = $dirpath . 'image/';
 
@@ -10,7 +10,9 @@ $mos_file = fopen('/tmp/plims_mos', 'w');
 fwrite($mos_file, $mospath);
 fclose($mos_file);
 
-unlink('/tmp/plims_status');
+if (file_exists('/tmp/plims_status')) {
+  unlink('/tmp/plims_status');
+}
 shell_exec('sh ' . $dirpath . 'update.sh >> /tmp/plims_status &');
 
 header("Content-type: text/xml");
