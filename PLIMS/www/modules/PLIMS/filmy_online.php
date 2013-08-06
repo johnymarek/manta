@@ -110,114 +110,8 @@ echo '
 ';
 }
 
-function generateIndexHeader1($cat)	{
-echo <<<HEA
-<?xml version='1.0' ?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-echo '
-<mediaDisplay name=photoView sideBottomHeightPC=21 sideTopHeightPC=11 columnCount=4 rowCount=3 fontSize=16 imageBorderColor="255:255:0" imageBackgroundColor="0:0:0" itemBackgroundColor="0:0:0" sliding="yes" itemGapXPC=1 itemGapYPC=2 showHeader="no" showDefaultInfo="yes" drawItemText="no" idleImageXPC="92" idleImageYPC="93" idleImageWidthPC="5" idleImageHeightPC="5">
-
-<text  offsetXPC=36 offsetYPC=2 widthPC=35 heightPC=10 fontSize=25 backgroundColor=-1:-1:-1 foregroundColor=255:255:255>Filmy on-line</text>
-	
-<itemDisplay>
-<image redraw="no" offsetXPC="1" offsetYPC="1" widthPC="98" heightPC="98">
-<script>
-	getItemInfo(-1, "media");
-</script>
-</image>
-</itemDisplay>
-HEA;
-
-echo '
-<idleImage>' . imgpath . 'loader_1.png</idleImage>
-<idleImage>' . imgpath . 'loader_2.png</idleImage>
-<idleImage>' . imgpath . 'loader_3.png</idleImage>
-<idleImage>' . imgpath . 'loader_4.png</idleImage>
-<idleImage>' . imgpath . 'loader_5.png</idleImage>
-<idleImage>' . imgpath . 'loader_6.png</idleImage>
-<idleImage>' . imgpath . 'loader_7.png</idleImage>
-<idleImage>' . imgpath . 'loader_8.png</idleImage>
-</mediaDisplay>
-	
-<channel>
-	<title>Filmy on-line alfabetycznie</title>
-	<link>' . webpath . 'filmy_online.php</link>
-
-<item>
-<title>A-B</title>
-<link>' . webpath . 'filmy_online.php?al=AB&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_ab.jpg</media>
-</item>
-
-<item>
-<title>C-D</title>
-<link>' . webpath . 'filmy_online.php?al=CD&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_cd.jpg</media>
-</item>
-
-<item>
-<title>E-F</title>
-<link>' . webpath . 'filmy_online.php?al=EF&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_ef.jpg</media>
-</item>
-
-<item>
-<title>G-H</title>
-<link>' . webpath . 'filmy_online.php?al=GH&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_gh.jpg</media>
-</item>
-
-<item>
-<title>I-J</title>
-<link>' . webpath . 'filmy_online.php?al=IJ&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_ij.jpg</media>
-</item>
-
-<item>
-<title>K-L</title>
-<link>' . webpath . 'filmy_online.php?al=KL&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_kl.jpg</media>
-</item>
-
-<item>
-<title>M-N</title>
-<link>' . webpath . 'filmy_online.php?al=MN&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_mn.jpg</media>
-</item>
-
-<item>
-<title>O-P</title>
-<link>' . webpath . 'filmy_online.php?al=OP&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_op.jpg</media>
-</item>
-
-<item>
-<title>R-S</title>
-<link>' . webpath . 'filmy_online.php?al=RS&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_rs.jpg</media>
-</item>
-
-<item>
-<title>T-U</title>
-<link>' . webpath . 'filmy_online.php?al=TU&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_tu.jpg</media>
-</item>
-
-<item>
-<title>W-V</title>
-<link>' . webpath . 'filmy_online.php?al=WV&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_wv.jpg</media>
-</item>
-
-<item>
-<title>X-Z</title>
-<link>' . webpath . 'filmy_online.php?al=XZ&amp;kat=' . $cat . '</link>
-<media>' . imgpath . 'fo_xz.jpg</media>
-</item>
-';
-}
-
-function generateSeriesHeader($al, $kat)	{
+function generateSeriesHeader($cat)	{
 echo <<<SER
 <?xml version='1.0' ?><rss version="2.0" encoding="UTF-8" xmlns:dc="http://purl.org/dc/elements/1.1/">
 SER;
@@ -226,30 +120,32 @@ echo '
 	<onEnter>showIdle();</onEnter>
 
 	<script>
-		Jukebox = "http://natanielek.neostrada.pl/' . $kat . '.xml";
+		Jukebox = "http://natanielek.neostrada.pl/' . $cat . '.xml";
 		Jukebox_ok = loadXMLFile(Jukebox);
 		if (Jukebox_ok == null) {
 			Jukebox_itemSize = 0;
 			print("Load Jukebox fail ", Jukebox);
 		}
 		else {
-			Jukebox_itemSize = getXMLElementCount("Jukebox' . $al . '", "Movie");
+			Jukebox_itemSize = getXMLElementCount("Jukebox", "Movie");
 			print("Jukebox Item Size = ", Jukebox_itemSize);
 		}
 		if (Jukebox_itemSize &gt; 0) {
-			Category_Title = getXMLText("Jukebox' . $al . '", "Category", "title");
+			Category_Title = getXMLText("Jukebox", "Category", "title");
 			Category_Background ="' . imgpath . 'filmy_online.jpg";
-			Category_RSS =getXMLText("Jukebox' . $al . '", "Category", "link");
+			Category_RSS =getXMLText("Jukebox", "Category", "link");
 			count=0;
 			while(1) {
-				Movie_ID = getXMLText("Jukebox' . $al . '", "Movie", count, "id");
-				Movie_Title = getXMLText("Jukebox' . $al . '", "Movie", count, "title");
-				Movie_Poster = getXMLText("Jukebox' . $al . '", "Movie", count, "poster");
-				Movie_File = getXMLText("Jukebox' . $al . '", "Movie", count, "file");
+				Movie_ID = getXMLText("Jukebox", "Movie", count, "id");
+				Movie_Title = getXMLText("Jukebox", "Movie", count, "title");
+				Movie_Poster = getXMLText("Jukebox", "Movie", count, "poster");
+				Movie_Info = getXMLText("Jukebox", "Movie", count, "info");
+				Movie_File = getXMLText("Jukebox", "Movie", count, "file");
 
 				Movie_ID_Array = pushBackStringArray(Movie_ID_Array, Movie_ID);
 				Movie_Title_Array = pushBackStringArray(Movie_Title_Array, Movie_Title);
 				Movie_Poster_Array = pushBackStringArray(Movie_Poster_Array, Movie_Poster);
+				Movie_Info_Array = pushBackStringArray(Movie_Info_Array, Movie_Info);
 				Movie_File_Array = pushBackStringArray(Movie_File_Array, Movie_File);
 
 				count += 1;
@@ -262,39 +158,7 @@ echo '
 		Current_Item_index=0;
 	</script>
 
-   	<mediaDisplay
-	     name="photoFocusView"
-	     fontSize="13"
-	     backgroundColor="0:0:0"
-	     bottomYPC="89"
-	     idleImageHeightPC="16"
-	     idleImageWidthPC="9"
-	     imageParentFocus="null"
-	     itemBackgroundColor="-1:-1:-1"
-	     rowCount="1"
-	     showDefaultInfo="yes"
-	     showHeader="no"
-	     sideColorTop="0:0:0"
-	     sideTopHeightPC="0"
-	     sideBottomHeightPC="0"
-	     itemBorderColor=-1:-1:-1
-	     itemBorderPC="0"
-	     sideColorBottom="30:0:0"
-	     columnCount="9"
-	     itemPerPage="9"
-	     itemBackgroundHeightPC="18.2"
-	     itemBackgroundWidthPC="8"
-	     itemHeightPC="16"
-	     itemWidthPC="6.6"
-	     itemOffsetXPC="4.5"
-	     itemOffsetYPC="50"
-	     itemGapXPC="2"
-	     focusItemOffsetYPC="26.1"
-	     focusItemWidthPC="19.2"
-	     focusItemHeightPC="47.8"
-	     focusItemBackgroundWidthPC="23.9"
-	     focusItemBackgroundHeightPC="55"
-     >
+<mediaDisplay name="photoView" showHeader="no" rowCount="2" columnCount="5" columnPerPage="5" drawItemText="no" showDefaultInfo="no" itemOffsetXPC="2" itemOffsetYPC="2" sliding="yes" itemBorderColor="0:0:0" itemHeightPC="28" itemWidthPC="17.2" itemBackgroundColor="0:0:0" idleImageXPC="92" idleImageYPC="93" idleImageWidthPC="5" idleImageHeightPC="5" backgroundColor="0:0:0"  sideTopHeightPC="0" mainPartColor="-1:-1:-1" sideColorBottom="-1:-1:-1" sideColorTop="-1:-1:-1">
 
 <idleImage>' . imgpath . 'loader_1.png</idleImage>
 <idleImage>' . imgpath . 'loader_2.png</idleImage>
@@ -304,20 +168,6 @@ echo '
 <idleImage>' . imgpath . 'loader_6.png</idleImage>
 <idleImage>' . imgpath . 'loader_7.png</idleImage>
 <idleImage>' . imgpath . 'loader_8.png</idleImage>
-
-		<backgroundDisplay>
-			<image redraw="no" offsetXPC="0" offsetYPC="0" widthPC="100" heightPC="100">
-				<script>
-					print(Category_Background);
-				</script>
-			</image>
-		</backgroundDisplay>
-
-		<text redraw="no" align="center" offsetXPC="4" offsetYPC="3" widthPC="90" heightPC="10" fontSize="20" backgroundColor="-1:-1:-1" foregroundColor="192:192:192">
-			<script>
-				print(Category_Title);
-			</script>
-		</text>
 
 	<onUserInput>
 			<script>
@@ -345,28 +195,45 @@ echo '
 				}
 			</script>
 	</onUserInput>
-</mediaDisplay>
-
-	<item_template>
-		<displayTitle>
-			<script>
-				displayTitle=getStringArrayAt(Movie_Title_Array , -1);
-				print(displayTitle);
-			</script>
-		</displayTitle>
-		<onClick>
-                        <script>
-                                showIdle();
-                                Current_Movie_File=getStringArrayAt(Movie_File_Array , Current_Item_index);
-                                playItemURL(Current_Movie_File, 0, "");
-                        </script>
-    </onClick>
-		<media:thumbnail>
+<itemDisplay>
+<image redraw="no" offsetXPC="5" offsetYPC="5" widthPC="90" heightPC="90">
 			<script>
 				Movie_Poster = getStringArrayAt(Movie_Poster_Array , -1);
 				print(Movie_Poster);
 			</script>
-		</media:thumbnail>
+
+</image>
+
+<image redraw="no" offsetXPC="0" offsetYPC="0" widthPC="100" heightPC="100" >
+<script>
+	if (getDrawingItemState() == "focus")
+		"' . imgpath . 'focus.png";
+	else
+		"' . imgpath . 'nofocus.png";
+</script>
+</image>
+</itemDisplay>
+<text redraw="yes" fontSize="20" align="center" offsetXPC="0" offsetYPC="60" widthPC="100" heightPC="9" backgroundColor="255:255:255" foregroundColor="0:0:0">
+      <script>
+				displayTitle=getStringArrayAt(Movie_Title_Array , -1);
+				print(displayTitle);
+			</script>
+</text>
+<text align="justify" lines="8" redraw="yes" fontSize="15" offsetXPC="0" offsetYPC="70" widthPC="100" heightPC="31" backgroundColor="0:0:0" foregroundColor="255:190:120">
+      <script>
+				displayInfo=getStringArrayAt(Movie_Info_Array , -1);
+				print(displayInfo);
+			</script>
+</text>
+</mediaDisplay>
+	<item_template>
+		<onClick>
+                        <script>
+                                showIdle();
+                                Current_Movie_File=getStringArrayAt(Movie_File_Array , Current_Item_index);
+                                playItemURL(Current_Movie_File, 0);
+                        </script>
+    </onClick>
 	</item_template>
 
 	<channel>
@@ -384,16 +251,11 @@ FOO;
 }
 
 if (isset($_GET['cat'])) {
-	generateIndexHeader1($_GET['cat']);
-	generateFooter();
-}
-elseif (isset($_GET['al'])) {
-	generateSeriesHeader($_GET['al'], $_GET['kat']);
+	generateSeriesHeader($_GET['cat']);
 	generateFooter();
 }
 else	{
 	generateIndexHeader();
 	generateFooter();
 }
-
 ?>
