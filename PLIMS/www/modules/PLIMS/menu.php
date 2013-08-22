@@ -194,9 +194,9 @@
 </item>
 
 <item>
-<title>Game Trailers</title>
-<link><?php echo $webpath; ?>gt.php</link>
-<media>logo-gt</media>
+<title>Polskie TV</title>
+<link>http://zam.opf.slu.cz/baco/skripty/tv.php?link=https://dl.dropboxusercontent.com/u/44973024/tv/polske_tv.xml,,<?php echo $webpath; ?>scripts,Polskie</link>
+<media>polskie</media>
 </item>
 
 <item>
@@ -206,9 +206,9 @@
 </item>
 
 <item>
-<title>Polskie TV</title>
-<link>http://zam.opf.slu.cz/baco/skripty/tv.php?link=https://dl.dropboxusercontent.com/u/44973024/tv/polske_tv.xml,,<?php echo $webpath; ?>scripts,Polskie</link>
-<media>polskie</media>
+<title>Game Trailers</title>
+<link><?php echo $webpath; ?>gt.php</link>
+<media>logo-gt</media>
 </item>
 
 <item>
@@ -216,6 +216,13 @@
 <link><?php echo $webpath; ?>mleczko.php</link>
 <media>logo-mleczko</media>
 </item>
+
+<item>
+<title>AXN</title>
+<link><?php echo $webpath; ?>axn.php</link>
+<media>logo-axn</media>
+</item>
+
 
 <item>
 <title>Humor</title>

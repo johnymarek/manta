@@ -1,3 +1,3 @@
 <?php
-	define("WERSJA", '3.4');
+	define("WERSJA", '3.5');
 ?>

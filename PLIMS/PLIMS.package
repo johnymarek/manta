@@ -1,8 +1,8 @@
 [PLIMS]
-	revision = 17
+	revision = 18
 	title = "PLIMS"
 	navy_title = "PLIMS"
 	navy_frame = "%mos%modules/PLIMS/ustawienia.php"
 	role = rss
 	files = "www/modules/PLIMS"
-	size = 5818
+	size = 5971
