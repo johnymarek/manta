@@ -89,8 +89,8 @@ function getChannels()	{
 </onClick>
 <desc><![CDATA[' . $wartosc["channel_description"] . ']]></desc>
 <author>' . $wartosc["user_name"] . '</author>
-<media>http://static2.weeb.tv/static2/ci/' . $wartosc["cid"] . '.jpg</media>
-<thumb>http://static2.weeb.tv/static2/thumb/' . $wartosc["cid"] . '.jpg</thumb>
+<media>http://static.weeb.tv/ci/' . $wartosc["cid"] . '.jpg</media>
+<thumb>http://static.weeb.tv/thumb/' . $wartosc["cid"] . '.jpg</thumb>
 <hd>' . $hd_qual . '</hd>
 <tv>' . $wartosc["channel_name"] . '</tv>
 </item>
